@@ -1,0 +1,27 @@
+{
+    "name": "gentor/intercom",
+    "description": "Wrapper on the Intercom class provided by Intercom - with custom methods and support for Laravel 5.x",
+    "keywords": [
+        "laravel",
+        "intercom",
+        "intercom.io",
+        "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeni Nurkov",
+            "email": "evgeni.nurkov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 5.6",
+        "intercom/intercom-php": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gentor\\Intercom\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
