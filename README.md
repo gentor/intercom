@@ -19,6 +19,12 @@ And add the service provider in `config/app.php`:
 Gentor\Intercom\IntercomServiceProvider::class,
 ```
 
+And add the facade alias in `config/app.php`:
+
+```php
+Gentor\Intercom\Facades\Intercom::class,
+```
+
 Configuration
 -------------
 

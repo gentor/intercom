@@ -1,6 +1,6 @@
 <?php
 
-namespace Gentor\Intercom;
+namespace Gentor\Intercom\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
