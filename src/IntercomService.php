@@ -5,6 +5,7 @@ namespace Gentor\Intercom;
 
 use GuzzleHttp\Exception\ClientException;
 use Intercom\IntercomClient;
+use Str;
 
 /**
  * Class IntercomService
@@ -33,10 +34,27 @@ class IntercomService
      * @param array $args
      *
      * @return mixed
+     * @throws \Gentor\Intercom\IntercomException
      */
     public function __call($method, array $args)
     {
-        return $this->client->{$method};
+        $call = explode('_', Str::snake($method));
+        $module = Str::plural($call[0]);
+
+        if (!property_exists($this->client, $module)) {
+            throw new IntercomException("Intercom module {$module} not found");
+        }
+
+        if (!isset($call[1])) {
+            throw new IntercomException("Intercom method for module {$module} is not set");
+        }
+
+        $method = $call[1];
+        if (!method_exists($this->client->{$module}, $method)) {
+            throw new IntercomException("Intercom method {$method} for module {$module} not found");
+        }
+
+        return call_user_func_array([$this->client->{$module}, $method], $args);
     }
 
     /**
@@ -69,21 +87,13 @@ class IntercomService
     }
 
     /**
+     * Create / Update User
+     *
      * @param array $data
      *
      * @return mixed
      */
     public function createUser(array $data)
-    {
-        return $this->client->users->create($data);
-    }
-
-    /**
-     * @param array $data
-     *
-     * @return mixed
-     */
-    public function editUser(array $data)
     {
         return $this->client->users->create($data);
     }
