@@ -5,7 +5,7 @@ namespace Gentor\Intercom;
 
 use GuzzleHttp\Exception\ClientException;
 use Intercom\IntercomClient;
-use Str;
+use Illuminate\Support\Str;
 
 /**
  * Class IntercomService
